@@ -1,0 +1,6 @@
+os:
+  editPreset: 'nvim'
+  open: 'code -r {{filename}}'
+gui:
+  nerdFontsVersion: '3'
+  skipRewordInEditorWarning: true
