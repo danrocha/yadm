@@ -4,3 +4,10 @@ os:
 gui:
   nerdFontsVersion: '3'
   skipRewordInEditorWarning: true
+
+[merge]
+  tool = nvim
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[mergetool]
+  prompt = false

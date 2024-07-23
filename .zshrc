@@ -103,6 +103,7 @@ fi
 # ALIASES
 # For a full list of active aliases, run `alias`.
 alias zshconfig="nvim ~/.zshrc"
+alias reload="source ~/.zshrc"
 alias yabaiconfig="nvim ~/.config/yabai/yabairc"
 alias skhdconfig="nvim ~/.config/skhd/skhdrc"
 alias reload="source ~/.zshrc"
@@ -124,8 +125,9 @@ export PATH="${BIRD_ROOT}/infrastructure/hasura:${PATH}"
 export PATH="${BIRD_SCRIPT_ROOT}:${PATH}"
 fpath=($BIRD_SCRIPT_ROOT $fpath)
 source $BIRD_SCRIPT_ROOT/zsh-functions.sh
-
 export PATH="/Users/danieldarocha/scripts:${PATH}"
+# Bird terraform
+export TF_PLUGIN_CACHE_DIR=/Users/danieldarocha/.terraform.d/plugin-cache
 
 # GCC (C Compiler for neovim treesitter)
 export CC=usr/bin/gcc
@@ -139,3 +141,13 @@ export PATH="${HOME}/.npm-global/bin:$PATH"
 
 # use vim binding in the terminal
 bindkey -v
+
+# OpenWeatherMap API Key (used by tmux-clima)
+export OPENWEATHERMAP_API_KEY="cc6e933dd4d15fc5413e3a0d49f64714"
+
+# Atuin
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
+
+# Created by `pipx` on 2024-07-22 05:21:37
+export PATH="$PATH:/Users/danieldarocha/.local/bin"
