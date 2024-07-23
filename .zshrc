@@ -10,7 +10,7 @@ fi
 export PATH=$PATH:/opt/WebDriver/bin
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/danieldarocha/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -118,16 +118,21 @@ export GPG_TTY=$(tty)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# BIRD
-export BIRD_ROOT=/Users/danieldarocha/Bird/birdeatsbug
-export BIRD_SCRIPT_ROOT=/Users/danieldarocha/Bird/birdeatsbug/scripts/dx
-export PATH="${BIRD_ROOT}/infrastructure/hasura:${PATH}"
-export PATH="${BIRD_SCRIPT_ROOT}:${PATH}"
-fpath=($BIRD_SCRIPT_ROOT $fpath)
-source $BIRD_SCRIPT_ROOT/zsh-functions.sh
-export PATH="/Users/danieldarocha/scripts:${PATH}"
-# Bird terraform
-export TF_PLUGIN_CACHE_DIR=/Users/danieldarocha/.terraform.d/plugin-cache
+OS=$(uname)
+HOSTNAME=$(hostname)
+
+# BIRD (macos and hostname "Daniels-MBP.fritz.box")
+if [[ $OS == "Darwin" ]] && [[ $HOSTNAME == "Daniels-MBP.fritz.box" ]]; then
+  export BIRD_ROOT=/Users/danieldarocha/Bird/birdeatsbug
+  export BIRD_SCRIPT_ROOT=/Users/danieldarocha/Bird/birdeatsbug/scripts/dx
+  export PATH="${BIRD_ROOT}/infrastructure/hasura:${PATH}"
+  export PATH="${BIRD_SCRIPT_ROOT}:${PATH}"
+  fpath=($BIRD_SCRIPT_ROOT $fpath)
+  source $BIRD_SCRIPT_ROOT/zsh-functions.sh
+  export PATH="/Users/danieldarocha/scripts:${PATH}"
+  # Bird terraform
+  export TF_PLUGIN_CACHE_DIR=/Users/danieldarocha/.terraform.d/plugin-cache
+fi
 
 # GCC (C Compiler for neovim treesitter)
 export CC=usr/bin/gcc
