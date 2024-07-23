@@ -90,36 +90,33 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+export EDITOR='nvim'
+
+export GPG_TTY=$(tty)
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+OS=$(uname)
+HOSTNAME=$(hostname)
+
 
 # ALIASES
 # For a full list of active aliases, run `alias`.
 alias zshconfig="nvim ~/.zshrc"
 alias reload="source ~/.zshrc"
-alias yabaiconfig="nvim ~/.config/yabai/yabairc"
-alias skhdconfig="nvim ~/.config/skhd/skhdrc"
 alias reload="source ~/.zshrc"
 alias g="lazygit"
-alias yabaiupdate='$HOME/.config/yabai/./update.sh'
-source $HOME/scripts/bird-commands.sh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [[ $OS == "Darwin" ]]; then
+  alias yabaiconfig="nvim ~/.config/yabai/yabairc"
+  alias skhdconfig="nvim ~/.config/skhd/skhdrc"
+  alias yabaiupdate='$HOME/.config/yabai/./update.sh'
+fi
 
-export GPG_TTY=$(tty)
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-OS=$(uname)
-HOSTNAME=$(hostname)
 
 # BIRD (macos and hostname "Daniels-MBP.fritz.box")
 if [[ $OS == "Darwin" ]] && [[ $HOSTNAME == "Daniels-MBP.fritz.box" ]]; then
@@ -128,10 +125,12 @@ if [[ $OS == "Darwin" ]] && [[ $HOSTNAME == "Daniels-MBP.fritz.box" ]]; then
   export PATH="${BIRD_ROOT}/infrastructure/hasura:${PATH}"
   export PATH="${BIRD_SCRIPT_ROOT}:${PATH}"
   fpath=($BIRD_SCRIPT_ROOT $fpath)
-  source $BIRD_SCRIPT_ROOT/zsh-functions.sh
   export PATH="/Users/danieldarocha/scripts:${PATH}"
   # Bird terraform
   export TF_PLUGIN_CACHE_DIR=/Users/danieldarocha/.terraform.d/plugin-cache
+
+  source $HOME/scripts/bird-commands.sh
+  source $BIRD_SCRIPT_ROOT/zsh-functions.sh
 fi
 
 # GCC (C Compiler for neovim treesitter)
